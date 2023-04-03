@@ -8,10 +8,28 @@ for (var i=0; i<array_length(chart.strumLines); i++) {
 	draw_text_ext_transformed((room_width / array_length(chart.strumLines)) / 2 + (room_width / array_length(chart.strumLines) * i), 200, string(chart.strumLines[i].combo),
 	10, room_height, 1.5, 1.5, 0);
 	var rots = [90,180,0,-90];
+	var ything = chart.strumLines[i].downScroll ? room_height - 100 : 100;
 	for (var j=0; j<4; j++) {
 		var strumOffset = (room_width / array_length(chart.strumLines)) / 2 + (room_width / array_length(chart.strumLines) * i) - 150 + (100 * j);
-		var keybinders = [keyboard_check(ord("A")), keyboard_check(ord("S")), keyboard_check(vk_up), keyboard_check(vk_right)];
-		draw_sprite_ext(Note, Note, strumOffset, chart.strumLines[i].downScroll ? room_height - 100 : 100, 0.6,0.6,rots[j], keybinders[j] && i == 1 ? c_gray : c_white, 1);
+		var keybinders = chart.strumLines[i].controls;
+		draw_sprite_ext(Note, Note, strumOffset, ything, 0.6,0.6,rots[j], keyboard_check(keybinders[j]) ? c_gray : c_white, 1);
+		
+		if(audio_is_paused(song) && mouse_check_button_pressed(mb_left) && strumOffset - 80<mouse_x && mouse_x<strumOffset+80
+																		 && ything - 80<mouse_y && mouse_y<ything+80) initiateInputSelect(i, j);
+		if (inputSelecting && curStrumLine == i && curStrum == j) draw_text(strumOffset, ything, floor(abs(sin(current_time))) == 1 ? "_" : " ");
+		else draw_text(strumOffset, ything, keytostring(chart.strumLines[i].controls[j]));
+	}
+	if (audio_is_paused(song)) {
+		var xThinger = (room_width / array_length(chart.strumLines)) / 2 + (room_width / array_length(chart.strumLines) * i);
+		if (mouse_check_button_pressed(mb_left) && xThinger-150<mouse_x 
+		&& mouse_x<xThinger+150 
+		&& (!chart.strumLines[i].downScroll ? room_height - 200 : 100)<mouse_y 
+		&& mouse_y<(!chart.strumLines[i].downScroll ? room_height - 100 : 200)) chart.strumLines[i].opponent = !chart.strumLines[i].opponent;
+		draw_set_colour(c_gray);
+		draw_button(xThinger-150, !chart.strumLines[i].downScroll ? room_height - 100 : 100,
+						xThinger+150, !chart.strumLines[i].downScroll ? room_height - 200 : 200, chart.strumLines[i].opponent);
+		draw_set_colour(c_white);
+		draw_text(xThinger, !chart.strumLines[i].downScroll ? room_height - 150 : 150, "Opponent Mode: " + string(chart.strumLines[i].opponent));
 	}
 	var curNotes = chart.strumLines[i].notes;
 	for (var j=0; j<array_length(curNotes); j++) {

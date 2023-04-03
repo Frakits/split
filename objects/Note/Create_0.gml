@@ -4,7 +4,12 @@ chart = global.doubleKillChart;
 for (var i=0; i<array_length(chart.strumLines); i++){ 
 	chart.strumLines[i].downScroll = false;
 	chart.strumLines[i].combo = 0;
+	chart.strumLines[i].controls = [ord("A"), ord("S"), vk_up, vk_right];
 }
+curStrumLine = undefined;
+curStrum = undefined;
+inputSelecting = false;
+
 song = audio_play_sound(tutorials,0,0);
 voicing = audio_play_sound(voicers,0,0);
 audio_pause_all();

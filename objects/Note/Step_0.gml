@@ -2,11 +2,11 @@
 // You can write your code in this editor
 windowSize = 80;
 audioPos = audio_sound_get_track_position(song)*1000;
-
-if (keyboard_check(ord("A"))) checkInput(0,1);
-if (keyboard_check(ord("S"))) checkInput(1,1);
-if (keyboard_check(vk_up)) checkInput(2,1);
-if (keyboard_check(vk_right)) checkInput(3,1);
+if (!audio_is_paused(song)) {
+	for (var strum=0; strum<array_length(chart.strumLines); strum++)
+		for (var i=0; i<array_length(chart.strumLines[strum].controls); i++)
+			if (keyboard_check_pressed(chart.strumLines[strum].controls[i]) && !chart.strumLines[strum].opponent) checkInput(i,strum);
+}
 
 if (keyboard_check_pressed(ord("Q"))) chart.strumLines[0].downScroll = !chart.strumLines[0].downScroll;
 if (keyboard_check_pressed(ord("W"))) chart.strumLines[1].downScroll = !chart.strumLines[1].downScroll;
@@ -35,12 +35,25 @@ for (var i=0; i<array_length(chart.strumLines); i++) {
 			chart.strumLines[i].combo = 0;
 		}
 		if (chart.strumLines[i].opponent) {
-			for (var j=0; j<clamp(10,0,array_length(chart.strumLines[i].notes)); j++) {
+			for (var j=0; j<array_length(chart.strumLines[i].notes); j++) {
 				if (chart.strumLines[i].notes[j].time - audioPos <= 10){
 					array_delete(chart.strumLines[i].notes, j, 1);
 					chart.strumLines[i].combo++;
 				} 
 			}
 		}
+	}
+}
+
+function initiateInputSelect(strumline, strumer) {
+	inputSelecting = true;
+	curStrumLine = strumline;
+	curStrum = strumer;
+}
+
+if (inputSelecting) {
+	if (keyboard_check_pressed(vk_anykey)) {
+		inputSelecting = false;
+		chart.strumLines[curStrumLine].controls[curStrum] = keyboard_lastkey;
 	}
 }
