@@ -14,8 +14,8 @@
   "soundFile": "tutorial.ogg",
   "duration": 151.399048,
   "parent": {
-    "name": "Sounds",
-    "path": "folders/Sounds.yy",
+    "name": "Interrupted",
+    "path": "folders/Sounds/Interrupted.yy",
   },
   "resourceVersion": "1.0",
   "name": "tutorial",

@@ -14,8 +14,8 @@
   "soundFile": "voices.ogg",
   "duration": 151.389435,
   "parent": {
-    "name": "Sounds",
-    "path": "folders/Sounds.yy",
+    "name": "Interrupted",
+    "path": "folders/Sounds/Interrupted.yy",
   },
   "resourceVersion": "1.0",
   "name": "voices",

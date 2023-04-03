@@ -1,5 +1,6 @@
 {
   "resources": [
+    {"id":{"name":"voicers","path":"sounds/voicers/voicers.yy",},"order":0,},
     {"id":{"name":"Note","path":"objects/Note/Note.yy",},"order":0,},
     {"id":{"name":"voices","path":"sounds/voices/voices.yy",},"order":1,},
     {"id":{"name":"tutorial","path":"sounds/tutorial/tutorial.yy",},"order":0,},
@@ -7,6 +8,7 @@
     {"id":{"name":"Sprite1","path":"sprites/Sprite1/Sprite1.yy",},"order":15,},
     {"id":{"name":"sustainCap","path":"sprites/sustainCap/sustainCap.yy",},"order":1,},
     {"id":{"name":"sustain","path":"sprites/sustain/sustain.yy",},"order":0,},
+    {"id":{"name":"tutorials","path":"sounds/tutorials/tutorials.yy",},"order":1,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
   "Options": [
@@ -52,6 +54,8 @@
     {"folderPath":"folders/Animation Curves.yy","order":12,"resourceVersion":"1.0","name":"Animation Curves","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Notes.yy","order":13,"resourceVersion":"1.0","name":"Notes","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Extensions.yy","order":14,"resourceVersion":"1.0","name":"Extensions","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sounds/Double Kill.yy","order":2,"resourceVersion":"1.0","name":"Double Kill","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sounds/Interrupted.yy","order":3,"resourceVersion":"1.0","name":"Interrupted","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
