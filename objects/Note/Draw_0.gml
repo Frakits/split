@@ -16,7 +16,7 @@ for (var i=0; i<array_length(chart.strumLines); i++) {
 		
 		if(audio_is_paused(song) && mouse_check_button_pressed(mb_left) && strumOffset - 80<mouse_x && mouse_x<strumOffset+80
 																		 && ything - 80<mouse_y && mouse_y<ything+80) initiateInputSelect(i, j);
-		if (inputSelecting && curStrumLine == i && curStrum == j) draw_text(strumOffset, ything, floor(abs(sin(current_time))) == 1 ? "_" : " ");
+		if (inputSelecting && curStrumLine == i && curStrum == j) draw_text(strumOffset, ything, round(abs(sin(current_time))) == 1 ? "-----" : " ");
 		else draw_text(strumOffset, ything, keytostring(chart.strumLines[i].controls[j]));
 	}
 	if (audio_is_paused(song)) {
@@ -29,7 +29,7 @@ for (var i=0; i<array_length(chart.strumLines); i++) {
 		draw_button(xThinger-150, !chart.strumLines[i].downScroll ? room_height - 100 : 100,
 						xThinger+150, !chart.strumLines[i].downScroll ? room_height - 200 : 200, chart.strumLines[i].opponent);
 		draw_set_colour(c_white);
-		draw_text(xThinger, !chart.strumLines[i].downScroll ? room_height - 150 : 150, "Opponent Mode: " + string(chart.strumLines[i].opponent));
+		draw_text(xThinger, !chart.strumLines[i].downScroll ? room_height - 150 : 150, "Opponent Mode: " + (chart.strumLines[i].opponent ? "On" : "Off"));
 	}
 	var curNotes = chart.strumLines[i].notes;
 	for (var j=0; j<array_length(curNotes); j++) {

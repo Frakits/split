@@ -27,6 +27,7 @@ function checkInput(inId, strum) {
 		}
 	}
 }
+opponentTime = 0;
 for (var i=0; i<array_length(chart.strumLines); i++) {
 	if (array_length(chart.strumLines[i].notes) != 0) {
 		var timeing = chart.strumLines[i].notes[0].time - audioPos;
@@ -35,8 +36,12 @@ for (var i=0; i<array_length(chart.strumLines); i++) {
 			chart.strumLines[i].combo = 0;
 		}
 		if (chart.strumLines[i].opponent) {
+			if (opponentTime + 5000 < current_time) for (var j=0; j<array_length(chart.strumLines[i].controls); j++) keyboard_key_release(chart.strumLines[i].controls[j]);
 			for (var j=0; j<array_length(chart.strumLines[i].notes); j++) {
 				if (chart.strumLines[i].notes[j].time - audioPos <= 10){
+					for (var k=0; k<array_length(chart.strumLines[i].controls); k++) keyboard_key_release(chart.strumLines[i].controls[k]);
+					keyboard_key_press(chart.strumLines[i].controls[chart.strumLines[i].notes[j].id]);
+					opponentTime = current_time;
 					array_delete(chart.strumLines[i].notes, j, 1);
 					chart.strumLines[i].combo++;
 				} 
